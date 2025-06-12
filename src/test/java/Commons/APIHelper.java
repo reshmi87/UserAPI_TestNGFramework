@@ -134,4 +134,100 @@ public class APIHelper{
 						statusCode(code).log().body().extract().response();
 	return response;
 	}
+	
+	public Response patchuser(String patchrequest, int code,String userid) throws IOException {
+		String patchendpoint = config.getpatchendpoint();
+		patchendpoint=patchendpoint+userid;
+		requesturl = baseurl + patchendpoint;
+		System.out.println(requesturl);
+		response =  given().
+						auth().preemptive().basic(username, password).
+						contentType("application/json").            
+						body(patchrequest).
+					when().
+						patch(""+requesturl+"").
+					then().
+						statusCode(code).log().body().extract().response();
+		return response;
+	}
+	
+	public Response patchuserinvalidstructure(String patchrequest, int code,String userid) throws IOException {
+		String patchendpoint = config.getpatchendpoint();
+		patchendpoint=patchendpoint+userid;
+		requesturl = baseurl + patchendpoint;
+		System.out.println(requesturl);
+		response =  given().
+						contentType("application/json").            
+						body(patchrequest).
+					when().
+						patch(""+requesturl+"").
+					then().
+						statusCode(code).log().body().extract().response();
+		return response;
+	}
+	
+	public Response putuser(String putrequest, int code, String userid,String contenttype) throws IOException {
+		String putendpoint = config.getputendpoint();
+		putendpoint=putendpoint+userid;
+		requesturl = baseurl + putendpoint;
+		contenttype = "application/"+contenttype;
+		System.out.println(requesturl);
+		response =  given().
+						auth().preemptive().basic(username, password).
+						contentType(contenttype).            
+						body(putrequest).
+					when().
+						put(""+requesturl+"").
+					then().
+						statusCode(code).log().body().extract().response();
+		return response;
+	}
+	
+	public Response putuserincorrectheaderstructure(String putrequest, int code, String userid) throws IOException {
+		String putendpoint = config.getputendpoint();
+		putendpoint=putendpoint+userid;
+		requesturl = baseurl + putendpoint;
+		System.out.println(requesturl);
+		response =  given().
+						auth().preemptive().basic(username, password).
+						contentType("application/xml").            
+						body(putrequest).
+					when().
+						put(""+requesturl+"").
+					then().
+						statusCode(code).log().body().extract().response();
+		return response;
+	}
+	
+	public Response getalluser(int code,String test) throws IOException {
+		String getallusersendpoint = config.getalluser();
+		requesturl = baseurl + getallusersendpoint;
+		System.out.println(requesturl);
+		if (test.contentEquals("validheader")) {
+			response =  given().
+						auth().preemptive().basic(username, password).
+					when().
+						get(""+requesturl+"").
+					then().
+						statusCode(code).log().body().extract().response();
+			}
+		else if(test.contentEquals("unauthorized")){
+			response =  given().
+					auth().preemptive().basic(username, "abcd").
+				when().
+					get(""+requesturl+"").
+				then().
+					statusCode(code).log().body().extract().response();
+		}
+		
+		else if(test.contentEquals("invalidendpoint")){
+			response =  given().
+					auth().preemptive().basic(username, password).
+				when().
+					get(""+requesturl+"1").
+				then().
+					statusCode(code).log().body().extract().response();
+			}	
+	return response;
+	}
 }

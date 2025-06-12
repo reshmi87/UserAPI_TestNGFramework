@@ -4,8 +4,14 @@
 
   <test thread-count="5" name="Test">
     <classes>
-    <class name="tests.Post"/>
-
+    	<class name="tests.Post"/>
+    	<class name="tests.Get"/>
+     	<class name="tests.GetbyUsername"/>
+      	<class name="tests.GetbyUserid"/>
+       	<class name="tests.Put"/>
+        <class name="tests.Patch"/>
+        <class name="tests.DeletebyFirstName"/>
+       	<class name="tests.Deletebyuserid"/>     
     </classes>
   </test> 
 </suite> 

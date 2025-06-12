@@ -57,5 +57,24 @@ public class ConfigReader {
 		return getbyuseridendpoint;
 		}
 	
+	public String getpatchendpoint() throws IOException {
+		prop.load(ConfigReader.class.getClassLoader().getResourceAsStream("configuration.properties"));
+		String patchendpoint = prop.getProperty("patchendpoint");
+		return patchendpoint;
+		}
+	
+	public String getputendpoint() throws IOException {
+		prop.load(ConfigReader.class.getClassLoader().getResourceAsStream("configuration.properties"));
+		String putendpoint = prop.getProperty("putendpoint");
+		return putendpoint;
+		}
+	
+	public String getalluser() throws IOException {
+		prop.load(ConfigReader.class.getClassLoader().getResourceAsStream("configuration.properties"));
+		String getalluserendpoint = prop.getProperty("getalluserendpoint");
+		return getalluserendpoint;
+		}
+	
+	
 	
 }

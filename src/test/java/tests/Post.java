@@ -23,7 +23,7 @@ public class Post extends baseclass{
 	String  postrequest;
 	Response response;
 	
-	
+	 
 	@Test(priority=1)
 	public void CreateUser_WithAllFields() throws IOException {
 		casenumber = 1;
@@ -31,7 +31,7 @@ public class Post extends baseclass{
 		validateallfields(responsejson);
 		test.info("Test "+casenumber+" Executed");
 	}
-	 
+
 
 	@Test(priority=2)
 	public void CreateUser_WithOnlyMandatoryFields() throws IOException {
@@ -238,6 +238,12 @@ public class Post extends baseclass{
 		test.info("Test "+casenumber+" Executed");
 	} 
 	
+	@Test(priority=25)
+	public void CreateUser_longnamefordelete() throws IOException {
+		casenumber = 83;
+		JsonPath responsejson = postandgetresponsejson(casenumber);
+		test.info("Test "+casenumber+" Executed");
+	} 
 	
 	//Common Non Test Methods.
 	

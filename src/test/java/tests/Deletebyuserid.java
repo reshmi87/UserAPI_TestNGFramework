@@ -15,7 +15,6 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 public class Deletebyuserid extends baseclass{
-	DataHelper dp = new DataHelper();
 	APIHelper api = new APIHelper();
 	ExcelReader read = new ExcelReader();
 	SoftAssert softAssert = new SoftAssert();
@@ -42,7 +41,81 @@ public class Deletebyuserid extends baseclass{
 					  
 		softAssert.assertEquals(status,"Success","Incorrect status");
 		softAssert.assertEquals(message,"User is deleted successfully","Incorrect message");
-		
+		softAssert.assertAll();
+	}
+	
+	@Test(priority=2)
+	public void deletedeleteduser() throws IOException {
+		casenumber = 89;
+		String userid = read.getuserdata(casenumber,12);
+		String code = read.getuserdata(casenumber,10);
+		int expectedstatuscode = Integer.parseInt(code);
+		response = api.deleteuserbyuserid(expectedstatuscode,userid);
+	}
+	
+	@Test(priority=3)
+	public void deletealphanumeric() throws IOException {
+		casenumber = 90;
+		String userid = read.getuserdata(casenumber,12);
+		String code = read.getuserdata(casenumber,10);
+		int expectedstatuscode = Integer.parseInt(code);
+		response = api.deleteuserbyuserid(expectedstatuscode,userid);
+	}
+	@Test(priority=4)
+	public void deleteinvalid() throws IOException {
+		casenumber = 91;
+		String userid = read.getuserdata(casenumber,12);
+		String code = read.getuserdata(casenumber,10);
+		int expectedstatuscode = Integer.parseInt(code);
+		response = api.deleteuserbyuserid(expectedstatuscode,userid);
+	}
+	@Test(priority=5)
+	public void deleteblank() throws IOException {
+		casenumber = 92;
+		String userid = read.getuserdata(casenumber,12);
+		String code = read.getuserdata(casenumber,10);
+		int expectedstatuscode = Integer.parseInt(code);
+		response = api.deleteuserbyuserid(expectedstatuscode,userid);
+	}
+	@Test(priority=6)
+	public void delete0userid() throws IOException {
+		casenumber = 93;
+		String userid = read.getuserdata(casenumber,12);
+		String code = read.getuserdata(casenumber,10);
+		int expectedstatuscode = Integer.parseInt(code);
+		response = api.deleteuserbyuserid(expectedstatuscode,userid);
+	}
+	@Test(priority=7)
+	public void deletenegativeuserid() throws IOException {
+		casenumber = 94;
+		String userid = read.getuserdata(casenumber,12);
+		String code = read.getuserdata(casenumber,10);
+		int expectedstatuscode = Integer.parseInt(code);
+		response = api.deleteuserbyuserid(expectedstatuscode,userid);
+	}
+	@Test(priority=8)
+	public void deleteoutofrange() throws IOException {
+		casenumber = 95;
+		String userid = read.getuserdata(casenumber,12);
+		String code = read.getuserdata(casenumber,10);
+		int expectedstatuscode = Integer.parseInt(code);
+		response = api.deleteuserbyuserid(expectedstatuscode,userid);
+	}
+	@Test(priority=9)
+	public void deletenull() throws IOException {
+		casenumber = 96;
+		String userid = read.getuserdata(casenumber,12);
+		String code = read.getuserdata(casenumber,10);
+		int expectedstatuscode = Integer.parseInt(code);
+		response = api.deleteuserbyuserid(expectedstatuscode,userid);
+	}
+	@Test(priority=10)
+	public void deletepreceedingspace() throws IOException {
+		casenumber = 97;
+		String userid = read.getuserdata(casenumber,12);
+		String code = read.getuserdata(casenumber,10);
+		int expectedstatuscode = Integer.parseInt(code);
+		response = api.deleteuserbyuserid(expectedstatuscode,userid);
 	}
 
 }
